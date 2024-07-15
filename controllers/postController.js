@@ -4,7 +4,8 @@ class PostController {
     async  index(req, res) {
         return res.send( await Post.paginate({}, {
             page: req.query.page || 1,
-            limit: 2,
+            limit: 5
+            ,
             sort: 'createdAt',
             populate: [
                 {

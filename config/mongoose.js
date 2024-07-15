@@ -1,8 +1,20 @@
-const mongoose = require('mongoose')
+require('dotenv').config();
 
-mongoose.connect('mongodb+srv://patrickresplandes87:pipocafrita@cluster0.s8indxb.mongodb.net/', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+const mongoose = require('mongoose');
+
+const uri = process.env.DB_CONNECTION;
+
+if (!uri) {
+    throw new Error('A string de conexão do MongoDB não está definida. Verifique o arquivo .env.');
+}
+
+mongoose.connect(uri, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true,
+}).then(() => {
+    console.log('Conectado ao MongoDB');
+}).catch((error) => {
+    console.error('Erro ao conectar ao MongoDB:', error);
 });
 
-module.export = mongoose;
+module.exports = mongoose;
