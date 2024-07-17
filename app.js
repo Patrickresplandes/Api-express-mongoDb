@@ -12,6 +12,7 @@ const AuthValidator = require('./validators/AuthValidator');
 const authMiddleware = require('./middlewares/authMiddleware');
 const FreteController = require('./controllers/freteController');
 const FreteValidator = require('./validators/freteValidator');
+const userController = require('./controllers/userController');
 
 const app = express();
 app.use(express.json());
@@ -40,6 +41,7 @@ app.get('/', (req, res) => {
 
 // Rota para autenticação
 app.post('/auth', validator.body(AuthValidator), AuthController.store);
+app.get('/auth', authMiddleware, userController.show);
 
 // Rota para usuários
 app.post('/usuarios', validator.body(UsuarioValidator), UsuarioController.store);
