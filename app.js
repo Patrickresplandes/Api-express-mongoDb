@@ -11,8 +11,10 @@ const AuthController = require('./controllers/AuthController');
 const AuthValidator = require('./validators/AuthValidator');
 const authMiddleware = require('./middlewares/authMiddleware');
 const FreteController = require('./controllers/freteController');
-const FreteValidator = require('./validators/freteValidator');
+const FreteValidator = require('./validators/FreteValidator');
 const userController = require('./controllers/userController');
+const MotoristaController = require('./controllers/MotoristaController'); 
+const MotoristaValidator = require('./validators/MotoristaValidator');
 
 const app = express();
 app.use(express.json());
@@ -38,6 +40,13 @@ app.use(function (req, res, next) {
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
+
+// Rotas para motorista
+app.post('/motoristas', validator.body(MotoristaValidator), MotoristaController.create);
+app.get('/motoristas', MotoristaController.list);
+app.get('/motoristas/:id', MotoristaController.getById);
+app.put('/motoristas/:id', validator.body(MotoristaValidator), MotoristaController.update);
+app.delete('/motoristas/:id', MotoristaController.delete);
 
 // Rota para autenticação
 app.post('/auth', validator.body(AuthValidator), AuthController.store);
