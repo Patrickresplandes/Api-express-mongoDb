@@ -15,6 +15,7 @@ const FreteValidator = require('./validators/FreteValidator');
 const userController = require('./controllers/userController');
 const MotoristaController = require('./controllers/MotoristaController'); 
 const MotoristaValidator = require('./validators/MotoristaValidator');
+const ManutencaoRoutes = require('./routes/manutencaoRoutes');
 
 const app = express();
 app.use(express.json());
@@ -47,6 +48,9 @@ app.get('/motoristas', MotoristaController.list);
 app.get('/motoristas/:id', MotoristaController.getById);
 app.put('/motoristas/:id', validator.body(MotoristaValidator), MotoristaController.update);
 app.delete('/motoristas/:id', MotoristaController.delete);
+
+//Rotas para Manutenção
+app.use('/manutencao', ManutencaoRoutes);
 
 // Rota para autenticação
 app.post('/auth', validator.body(AuthValidator), AuthController.store);
