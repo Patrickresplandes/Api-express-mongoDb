@@ -13,8 +13,8 @@ const authMiddleware = require('./middlewares/authMiddleware');
 const FreteController = require('./controllers/freteController');
 const FreteValidator = require('./validators/freteValidator');
 const userController = require('./controllers/userController');
-const MotoristaController = require('./controllers/MotoristaController'); 
-const MotoristaValidator = require('./validators/MotoristaValidator');
+const MotoristaController = require('./controllers/motoristaController'); 
+const MotoristaValidator = require('./validators/motoristaValidator');
 const ManutencaoRoutes = require('./routes/manutencaoRoutes');
 
 const app = express();
