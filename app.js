@@ -11,7 +11,7 @@ const AuthController = require('./controllers/AuthController');
 const AuthValidator = require('./validators/AuthValidator');
 const authMiddleware = require('./middlewares/authMiddleware');
 const FreteController = require('./controllers/freteController');
-const FreteValidator = require('./validators/FreteValidator');
+const FreteValidator = require('./validators/freteValidator');
 const userController = require('./controllers/userController');
 const MotoristaController = require('./controllers/MotoristaController'); 
 const MotoristaValidator = require('./validators/MotoristaValidator');
@@ -29,14 +29,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-app.use(function (req, res, next) {
-    console.log('Requisição recebida:', req.method, req.url);
-    console.log('Headers:', req.headers);
-    console.log('Body:', req.body);
-    next();
-});
-
 // Rota de teste
 app.get('/', (req, res) => {
     res.send('Hello World!');
