@@ -44,6 +44,10 @@ app.delete('/motoristas/:id', MotoristaController.delete);
 //Rotas para Manutenção
 app.use('/manutencao', ManutencaoRoutes);
 
+// Rotas para fretes
+app.post('/frete', validator.body(FreteValidator), FreteController.store);
+app.get('/frete', FreteController.index);
+
 // Rota para autenticação
 app.post('/auth', validator.body(AuthValidator), AuthController.store);
 app.get('/auth', authMiddleware, userController.show);
@@ -53,10 +57,6 @@ app.post('/usuarios', validator.body(UsuarioValidator), UsuarioController.store)
 
 // Middleware de autenticação
 app.use(authMiddleware);
-
-// Rotas para fretes
-app.post('/frete', validator.body(FreteValidator), FreteController.store);
-app.get('/frete', FreteController.index);
 
 // Rotas para posts e comentários
 app.use('/posts', PostRoutes);
